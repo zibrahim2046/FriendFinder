@@ -1,4 +1,4 @@
-var Clients = [{
+var Friends = [{
 	"name":"Bill",
 	  "photo":"https://i1.wp.com/www.shakespearealoud.com/2014site/wp-content/uploads/2011/06/BB-LH-cropped-no-name.jpg",
 	   "scores":['3','3','2','2','4','4','4','5','2','4']
@@ -16,4 +16,4 @@ var Clients = [{
 		"scores":['1','3','5','5','2','2','3','4','1','5']
 }];
 
-module.exports = Clients;
+module.exports = Friends;
