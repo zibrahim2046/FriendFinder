@@ -1,36 +1,28 @@
-// Node Dependencies
-var express = require('express');
-var bodyParser = require('body-parser');
-var path = require('path');
-
-
-
-// Link in html and api routes
-// var apiRoutes = require('./app/routing/api-routes.js');
-// var htmlRoutes = require('./app/routing/html-routes.js');
-
-
-
-// Set up Express App
+// Dependencies
+var express = require("express");
+var bodyParser = require("body-parser");
 var app = express();
+var path = require("path");
+
+
+// Set initial port 
 var PORT = process.env.PORT || 8080;
 
-
-
-// Sets up the Express app to handle data parsing
+// BodyParser to interpret data sent to server
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
-app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+
+// Points server to CSS and JS static route files
+app.use(express.static(path.join(__dirname + '/app/public')));
+
+// Points server to route files
+require("./app/routing/apiRoutes.js")(app);
+require("./app/routing/htmlRoutes.js")(app);
 
 
-
-// Server Routing Map 
-// apiRoutes(app); 
-// htmlRoutes(app); 
-
-
-// Listener - Start the server
+// LISTENER: "starts" our server and listens for an event
 app.listen(PORT, function() {
-  console.log("App listening on PORT: " + PORT);
+    console.log("App listening on PORT: " + PORT);
 });
